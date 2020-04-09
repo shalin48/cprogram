@@ -1,0 +1,46 @@
+#include<stdio.h>
+main()
+{
+int num,pos,sb=0,cb=0,z=0;
+
+//scanning num
+printf("Enter the Num:\n");
+scanf("%d",&num);
+
+//printing binary
+for(pos=31;pos>=0;pos--)
+{
+printf("%d",num>>pos&1);
+if(!(pos%8))
+printf(" ");
+}
+printf("\n");
+
+int num1=num;  //storing num to num1 for set bit series
+
+//finding longest set bit series
+while(num1>0)
+{
+num1= num1&num1<<1;
+sb++;
+}
+
+//counting clear bit
+for(  ;num;num=num>>1)
+{
+if(!(num&1))
+{
+z++;
+if(z>cb)
+cb=z;
+}
+else
+z=0;
+}
+
+
+//printing result
+printf("Longest Series of 1's: %d\n",sb);
+printf("Shortest Series of 0's: %d\n",cb);
+
+}
